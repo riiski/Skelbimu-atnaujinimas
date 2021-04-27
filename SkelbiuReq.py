@@ -1,3 +1,4 @@
+#Skriptas nebeveikia nuo 2021-04-27
 import requests
 
 url = 'https://www.skelbiu.lt/users/signin'
