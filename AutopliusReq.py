@@ -1,20 +1,28 @@
-from lxml import html
-import requests
+from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+
+options.add_argument('headless')
 
 
-url = 'https://autoplius.lt/pasas/registracija'
-payload = {'login_name': '', 'login_password':'', 'is_login' : '1'} #Fill in with account name and password
+
+driver = webdriver.Chrome(options=options, executable_path='C:/Users/user/Downloads/chromedriver.exe')
 
 
-with requests.Session() as s:
-    p = s.post(url, data=payload) # connection request
 
-    tree = html.fromstring(p.content)
+def renew():
 
-    #find :renew: buttons
-    ads = tree.xpath('//*[@class="submit-link center submit-grey fr"]//@href')
-    atitinka = [l for l in ads if 'renew' in l]
+    driver.get ('https://autoplius.lt/mano-aplinka/skelbimai?action=renew_all&id=1&page_nr=1')
 
-    #request GET method for update
-    for t in atitinka:
-        s.get(t)
+    driver.find_element_by_id('username-lookup').send_keys('test@gmail.com')
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath("//button[text()='Tęsti']").click();
+
+    driver.find_element_by_id('password').send_keys('testpassword')
+
+    driver.find_element_by_xpath("//button[text()='Prisijungti']").click();
+
+    driver.implicitly_wait(4)
+    driver.find_element_by_css_selector(".button.renew-all-button").click()
+
+renew()
