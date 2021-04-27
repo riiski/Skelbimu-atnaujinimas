@@ -8,6 +8,8 @@ Fill in login information on script and have a python installed on your computer
 ```bash
 pip install selenium
 ```
+And download driver from here:
+https://chromedriver.chromium.org/
 ## Start script
 ```bash
 python AutopliusReq.py
