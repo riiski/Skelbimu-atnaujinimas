@@ -1,3 +1,4 @@
+#Skriptas nebeveikia, tikrinta 2021-04-27
 from lxml import html
 import requests
 
